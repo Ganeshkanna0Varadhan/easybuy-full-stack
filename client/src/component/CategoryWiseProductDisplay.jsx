@@ -62,7 +62,7 @@ const CategoryWiseProductDisplay = ({ id, name}) => {
         return filterData ? true : null;
       }) 
 
-      const url = `/${validURLConvert(name)}-${id}/${validURLConvert(subCategory.name)}-${subCategory._id}`;
+      const url = `/${validURLConvert(name)}-${id}/${validURLConvert(subCategory?.name)}-${subCategory?._id}`;
       navigate(url)
     }
   
