@@ -11,7 +11,7 @@ import { GoTriangleDown, GoTriangleUp } from "react-icons/go";
 import UserMenu from "./UserMenu";
 import { displayPriceInRupees } from "../utils/DisplayPriceInRupees";
 import { useGlobalContext } from "../provider/GlobalProvider";
-import DisplayCartItem from "./displayCartItem";
+import DisplayCartItem from "./DisplayCartItem";
 
 const Header = () => {
     const isMobile  = useMobile();

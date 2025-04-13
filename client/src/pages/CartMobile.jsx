@@ -1,5 +1,5 @@
 import React from 'react'
-import DisplayCartItem from '../component/displayCartItem'
+import DisplayCartItem from '../component/DisplayCartItem'
 
 const CartMobile = () => {
   return (
