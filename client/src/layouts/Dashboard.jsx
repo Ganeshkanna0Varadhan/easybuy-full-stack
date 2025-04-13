@@ -1,5 +1,5 @@
 import React from 'react'
-import UserMenu from '../component/userMenu'
+import UserMenu from '../component/UserMenu'
 import { Outlet } from 'react-router-dom'
 // import { useSelector } from 'react-redux'
 
