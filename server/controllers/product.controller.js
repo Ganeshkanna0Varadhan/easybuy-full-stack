@@ -102,7 +102,7 @@ export const getProductByCategory = async (req, res) => {
             })
         }
 
-        const product = await ProductModel.find({category: { $in : _id }}).limit(15);
+        const product = await ProductModel.find({category: { $in : _id }}).limit(10);
 
         return res.status(200).json({
             message: "category product list",
