@@ -128,7 +128,7 @@ const GlobalProvider = ({children}) => {
     useEffect(() => {
       if (user && user?._id) {
         fetchCartItem();
-        handleLogout();
+        // handleLogout();
         fetchAddress();
         fetchOrder();
       }
@@ -161,7 +161,8 @@ const GlobalProvider = ({children}) => {
           value={{
             fetchCartItem,
             fetchAddress, 
-            updateCartItem, 
+            updateCartItem,
+            handleLogout, 
             deleteCartItem,
             totalPrice,
             totalQty,

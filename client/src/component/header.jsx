@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import logo from "../assets/logo.png";
 import Search from "./search";
 import { Link, useLocation, useNavigate } from "react-router-dom";
@@ -104,7 +104,7 @@ const Header = () => {
 
                                         </div>
                                     ) : (
-                                        <button onClick={redirectToLoginPage} className="text-lg flex gap-2 items-center px-2.5 py-2.5 border-2 group hover:border-blue-900 border-blue-700 rounded"> 
+                                        <button onClick={redirectToLoginPage} className="text-lg flex gap-2 items-center px-2 py-2 border-2 group hover:border-blue-900 border-blue-700 rounded"> 
                                             <BiUser className="text-blue-700 group-hover:text-blue-900" size={26}/>
                                             <p className="px-2 text-blue-700 group-hover:text-blue-900 text-lg">Login</p>
                                         </button>

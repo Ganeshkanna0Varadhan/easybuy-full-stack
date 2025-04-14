@@ -5,13 +5,22 @@ import { Link } from 'react-router-dom'
 
 const Cancel = () => {
   return (
-    <section className="m-2 w-full h-[75vh] bg-red-200 p-4 py-5 rounded mx-auto flex flex-col justify-center items-center gap-2" >
-      <div className="text-red-800 font-bold text-lg">
-        <GiCancel size={100}  className='flex items-center justify-between'/>
+    <section className="w-full h-[75vh] flex items-center justify-center bg-red-50">
+      <div className="bg-white p-8 rounded-lg shadow-lg flex flex-col items-center gap-4 max-w-md w-full">
+        <div className="bg-red-100 p-4 rounded-full">
+          <GiCancel size={50} className="text-red-600" />
+        </div>
+        <h2 className="text-xl font-semibold text-red-700">Order Cancelled</h2>
+        <p className="text-sm text-gray-700 text-center">
+          Your order could not be completed. If this was a mistake, please try again.
+        </p>
+        <Link
+          to="/"
+          className="mt-2 bg-red-600 hover:bg-red-700 text-white px-5 py-2 rounded transition"
+        >
+          Return Home
+        </Link>
       </div>
-      <p className="text-red-800 font-bold text-lg  animate-wiggle text-center">Order Cancelled</p>
-      <Link to="/" className="border border-red-900 text-red-900 hover:bg-red-900 hover:text-white flex gap-1 items-center transition-all px-2 rounded py-1"><HiHome size={18}/> Home </Link>
-
     </section>
   )
 }

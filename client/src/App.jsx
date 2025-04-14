@@ -27,7 +27,7 @@ function App() {
   }
 
   useEffect(() => {
-    const token = localStorage.getItem("token"); // or however you store auth
+    const token = localStorage.getItem("accessToken"); // or however you store auth
     if (token) {
       fetchUser();
     }
@@ -82,7 +82,8 @@ function App() {
       <Footer/>
       <Toaster/>
       {
-        location.pathname !== '/checkout' && (
+        (location.pathname !== '/checkout' && location.pathname !== '/cart' 
+          && location.pathname != "/success" && location.pathname != "/error") && (
           <CartMobileLink/>
         )
       }

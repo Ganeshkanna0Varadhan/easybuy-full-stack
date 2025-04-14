@@ -175,7 +175,7 @@ export const webhookStripe = async (req, res) => {
                 const removeCartItems = await UserModel.findByIdAndUpdate(userId, {
                     shopping_cart: []
                 });
-
+                
                 const removeCartProductDB = await CartProductModel.deleteMany({ userId: userId});
             }
         break;

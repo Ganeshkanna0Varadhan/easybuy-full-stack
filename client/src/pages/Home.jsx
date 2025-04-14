@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import banner from '../assets/banner.jpg'
 import banner_mobile from '../assets/banner-mobile.jpg'
 import { useSelector } from 'react-redux'
@@ -29,7 +29,7 @@ import AxiosToastError from '../utils/AxiosToastError'
     return (
       <section>
         <div className='my-4 bg-white'>
-          <div className={`w-full h-full min-h-48 bg-blue-100 rounded ${!banner && "animate-pulse" } `}>
+          <Link to={"/search"} className={`w-full hover:cursor-pointer h-full min-h-48 bg-blue-100 rounded ${!banner && "animate-pulse" } `}>
             <img  
               src={banner}
               className='w-full h-full hidden lg:block'
@@ -40,7 +40,7 @@ import AxiosToastError from '../utils/AxiosToastError'
               className='w-full h-full  lg:hidden'
               alt='banner'
             ></img>
-          </div>
+          </Link>
         </div>
         <div className='px-4 my-2 grid grid-cols-5 sm:grid-cols-6 md:grid-cols-8 lg:grid-cols-10 gap-2'>
           {/* <h2 className="font-bold text-lg">Shop by Category</h2> */}

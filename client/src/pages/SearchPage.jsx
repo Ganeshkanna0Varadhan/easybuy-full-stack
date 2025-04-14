@@ -72,7 +72,6 @@ const SearchPage = () => {
     }, [page, debouncedSearch]);
 
     const handleFetchMore = () => {
-        console.log("hasmoreFectch called");
        if (totalPage > page) {
         setPage((prev) => prev + 1);
        } 

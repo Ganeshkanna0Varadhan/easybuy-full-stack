@@ -94,8 +94,6 @@ export const getProductByCategory = async (req, res) => {
         
         const { _id } = req.body;
 
-        console.log("_id ", _id);
-
         if (!_id) {
             return res.status(200).json({
                 message: "Provide Category Id",
@@ -105,8 +103,6 @@ export const getProductByCategory = async (req, res) => {
         }
 
         const product = await ProductModel.find({category: { $in : _id }}).limit(15);
-
-        console.log("products ", product);
 
         return res.status(200).json({
             message: "category product list",

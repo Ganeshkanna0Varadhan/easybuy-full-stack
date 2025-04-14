@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { FaCloudUploadAlt } from 'react-icons/fa';
 import uploadImage from '../utils/UploadImage';
 import toast from 'react-hot-toast';
@@ -34,6 +34,7 @@ const UploadProduct = () => {
   const [selectCategory, setSelectCategory] = useState("");
   const [selectSubCategory, setSelectSubCategory] = useState("");
   const allSubCategory = useSelector((state) => state.product.allSubCategory);
+  const [allSelectedSubCategory, setAllSelectedSubCategory] = useState([]);
   // const [moreField, setMoreField] = useState([]);
   const [openAddField, setOpenAddField] = useState(false);
   const [fieldName, setFieldName] = useState("");
@@ -48,6 +49,32 @@ const UploadProduct = () => {
       }
     })
   }
+
+  useEffect(() => {
+    if (!data.category[0]) {
+      setAllSelectedSubCategory(allSubCategory);
+      return;
+    }
+
+    let allFilterSubCategory = [];
+    for (let cat of data.category) {
+      let filterData = allSubCategory.filter((sub) => {
+        let isfind = sub?.category.some((category) => {
+          return category._id === cat._id;
+        });
+        
+        return isfind ? isfind : null
+      });
+
+      allFilterSubCategory.push(filterData);
+    }
+
+    allFilterSubCategory = allFilterSubCategory.flat(1); 
+    setAllSelectedSubCategory(allFilterSubCategory);
+
+  }, [data.category, allSubCategory])
+  
+
 
   const handleUploadImage = async (e) => {
     try {
@@ -95,7 +122,8 @@ const UploadProduct = () => {
     data.category.splice(index, 1);
     setData((prev) => {
       return {
-        ...prev
+        ...prev,
+        category: [...prev.category]
       }
     })
   }
@@ -291,7 +319,7 @@ const UploadProduct = () => {
                   const value = e.target.value;
                   if (!value) 
                     return
-                  const subCategory = allSubCategory.find((category) => category._id === value)
+                  const subCategory = allSelectedSubCategory.find((category) => category._id === value)
 
                   setData((prev) => {
                     return {
@@ -305,7 +333,7 @@ const UploadProduct = () => {
                 >
                 <option value={""}>Select Sub Category</option>
                 {
-                  allSubCategory.map((cat, index) => {
+                  allSelectedSubCategory.map((cat, index) => {
                     return (
                       <option key={"sub_category_"+index} value={cat._id}>{cat.name}</option>
                     )

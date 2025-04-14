@@ -43,7 +43,8 @@ export const getAddress = async (req, res) => {
     try {
         const userId = req.userId;
         const addresss = await AddressModel.find({
-            userId: userId
+            userId: userId, 
+            status: true
         }).sort({createdAt: -1})
 
         return res.status(200).json({

@@ -21,6 +21,12 @@ const CheckoutPage = () => {
   const navigate = useNavigate();
   const handleCashOnDelivery = async () => {
     try {
+
+      if (!addressList[selectAddress]) {
+        toast.error("Proceed with Delivery Address")
+        return;
+      }
+
       const response = await Axios({
         ...SummaryApi.cashOnDeliveryOrder,
         data: {
@@ -46,8 +52,15 @@ const CheckoutPage = () => {
     }
   }
 
+
   const handleOnlinePayment = async () => {
     try {
+
+      if (!addressList[selectAddress]) {
+        toast.error("Proceed with Delivery Address")
+        return;
+      }
+
       toast.loading('Loading...');
       const stripePublicKey = import.meta.env.VITE_STRIPE_PUBLIC_KEY;
       const stripePromise = await loadStripe(stripePublicKey)
@@ -89,8 +102,8 @@ const CheckoutPage = () => {
                 addressList[0] && (
                   addressList.map((address, index) => {
                     return (
-                      <label htmlFor={"address"+index} className={`hover: cursor-pointer ${address?.status && "hidden"}`}>
-                        <div className={`border-2 border-blue-200 flex items-start justify-between gap-2 rounded p-2 ${selectAddress == index ? "bg-blue-100" : ""} `} key={"address_list_checkout_"+index}>
+                      <label key={"address_list_checkout_"+index} htmlFor={"address"+index} className={`hover: cursor-pointer ${!address?.status && "hidden"}`}>
+                        <div className={`border-2 border-blue-200 flex items-start justify-between gap-2 rounded p-2 ${selectAddress == index ? "bg-blue-100" : ""} `} >
                           <div className='flex items-start gap-2'>
                             <div>
                               <input id={"address"+index} value={index} defaultChecked={selectAddress == index} onChange={(e) => setSelectedAddress(e.target.value)} className='size-3' type='radio'  name='address' />
@@ -103,11 +116,11 @@ const CheckoutPage = () => {
                               <p>{address.country} - <span className='font-semibold'>{address.pincode}</span></p>
                             </div>
                           </div>
-                          <div>
+                          {/* <div>
                             <button>
                               <BiEdit size={20}/>
                             </button>
-                          </div>
+                          </div> */}
                         </div>
                       </label>
                     )

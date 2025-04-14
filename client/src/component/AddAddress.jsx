@@ -8,7 +8,10 @@ import toast from 'react-hot-toast';
 import { useGlobalContext } from '../provider/GlobalProvider';
 const AddAddress = ({ close }) => {
     const { fetchAddress } = useGlobalContext();
-    const { register, handleSubmit, reset } = useForm();
+    const { register, handleSubmit, reset, formState: { isValid } } = useForm({
+        mode: "onChange"
+    });
+
 
     const onSubmit = async (data) => {
         try {
@@ -102,12 +105,11 @@ const AddAddress = ({ close }) => {
                             type='text'
                             id='mobile'
                             className='border bg-blue-50 p-2 rounded outline-none focus-within:border-blue-700'
-                            {...register("mobile", {required: true})}
+                            {...register("mobile", {required: true, minLength: 10, maxLength: 10, pattern: { value: /^[0-9]{10}$/}})}
                         />
                     </div>
 
-
-                    <button className='bg-primary-100 mt-2 rounded text-black w-full py-2 font-semibold hover:bg-primary-200 hover:text-white'>Submit</button>
+                    <button  disabled={!isValid} className={` mt-2 rounded  w-full py-2 font-semibold  ${isValid ? "bg-primary-100 text-black hover:bg-primary-200 hover:text-white" : "bg-gray-300 text-gray-600 cursor-not-allowed"}`}>Submit</button>
                 </form>
 
             </div>
